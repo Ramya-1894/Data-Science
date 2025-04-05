@@ -1,0 +1,126 @@
+import numpy as np
+
+# Basic Array Operations
+array_3x3 = np.random.randint(0, 11, (3, 3))
+print("3x3 Array:\n", array_3x3)
+print("Sum:", np.sum(array_3x3))
+print("Mean:", np.mean(array_3x3))
+print("Standard Deviation:", np.std(array_3x3))
+
+array_1D = np.random.randint(1, 10, 10)
+print("1D Array:", array_1D)
+print("Cumulative Sum:", np.cumsum(array_1D))
+
+array_2x3_a = np.random.randint(1, 10, (2, 3))
+array_2x3_b = np.random.randint(1, 10, (2, 3))
+print("Addition:\n", array_2x3_a + array_2x3_b)
+print("Subtraction:\n", array_2x3_a - array_2x3_b)
+print("Multiplication:\n", array_2x3_a * array_2x3_b)
+print("Division:\n", array_2x3_a / array_2x3_b)
+
+identity_matrix = np.eye(4)
+print("4x4 Identity Matrix:\n", identity_matrix)
+
+a = np.array([5, 10, 15, 20, 25])
+print("Divided Array:", a / 5)
+
+# Array Manipulation
+array_1D_12 = np.arange(12)
+matrix_3x4 = array_1D_12.reshape(3, 4)
+print("Reshaped 3x4 Matrix:\n", matrix_3x4)
+
+matrix_3x3 = np.random.randint(1, 10, (3, 3))
+print("Flattened Array:", matrix_3x3.flatten())
+
+matrix_3x3_b = np.random.randint(1, 10, (3, 3))
+print("Horizontally Stacked:\n", np.hstack((matrix_3x3, matrix_3x3_b)))
+print("Vertically Stacked:\n", np.vstack((matrix_3x3, matrix_3x3_b)))
+
+array_a = np.random.randint(1, 10, (3, 3))
+array_b = np.random.randint(1, 10, (3, 2))
+concatenated = np.concatenate((array_a, array_b), axis=1)
+print("Concatenated Along New Axis:\n", concatenated)
+
+matrix_3x2 = np.random.randint(1, 10, (3, 2))
+print("Transposed and Reshaped:\n", matrix_3x2.T.reshape(3, 2))
+
+# Indexing and Slicing
+array_15 = np.arange(15)
+print("Extracted Elements:", array_15[2:10:2])
+
+matrix_5x5 = np.random.randint(1, 10, (5, 5))
+print("Sub-matrix:\n", matrix_5x5[1:4, 2:5])
+
+array_1D_10 = np.random.randint(1, 20, 10)
+array_1D_10[array_1D_10 > 10] = 10
+print("Modified Array:", array_1D_10)
+
+indices = [0, 2, 4, 6]
+print("Fancy Indexed Elements:", array_15[indices])
+
+array_reversed = np.arange(10)[::-1]
+print("Reversed Array:", array_reversed)
+
+# Broadcasting
+matrix_3x3 = np.random.randint(1, 10, (3, 3))
+row_vector = np.random.randint(1, 10, (1, 3))
+print("Broadcasted Addition:\n", matrix_3x3 + row_vector)
+
+array_5 = np.arange(5)
+print("Broadcasted Multiplication:", array_5 * 3)
+
+column_vector = np.random.randint(1, 10, (3, 1))
+print("Broadcasted Subtraction:\n", matrix_3x3 - column_vector)
+
+tensor_3D = np.random.randint(1, 10, (2, 3, 3))
+print("Broadcasted Scalar Addition:\n", tensor_3D + 5)
+
+array_4x1 = np.random.randint(1, 10, (4, 1))
+array_1x5 = np.random.randint(1, 10, (1, 5))
+print("Broadcasted Addition:\n", array_4x1 + array_1x5)
+
+# Vectorized Operations
+matrix_2D = np.random.randint(1, 10, (3, 3))
+print("Square Roots:\n", np.sqrt(matrix_2D))
+
+vector_1 = np.random.randint(1, 10, 5)
+vector_2 = np.random.randint(1, 10, 5)
+print("Dot Product:", np.dot(vector_1, vector_2))
+
+vector_3 = np.random.randint(1, 10, 5)
+vector_4 = np.random.randint(1, 10, 5)
+print("Element-wise Comparison:", vector_3 > vector_4)
+
+matrix_2D_doubled = matrix_2D * 2
+print("Doubled Matrix:\n", matrix_2D_doubled)
+
+array_100 = np.random.randint(1, 100, 100)
+print("Sum of Even Numbers:", np.sum(array_100[array_100 % 2 == 0]))
+
+# Linear Algebra
+matrix_3x3 = np.random.randint(1, 10, (3, 3))
+print("Determinant:", np.linalg.det(matrix_3x3))
+
+matrix_2x2 = np.array([[2, 3], [4, 6]])
+inverse_matrix = np.linalg.pinv(matrix_2x2)  # Pseudo-inverse for singular matrices
+identity_check = np.round(np.dot(matrix_2x2, inverse_matrix), 2)
+print("Inverse Matrix:\n", inverse_matrix)
+print("Identity Check:\n", identity_check)
+
+matrix_2x2_eigen = np.array([[3, 1], [2, 4]])
+eigenvalues, eigenvectors = np.linalg.eig(matrix_2x2_eigen)
+print("Eigenvalues:", eigenvalues)
+print("Eigenvectors:\n", eigenvectors)
+
+A = np.array([[2, 3], [4, 6]])
+B = np.array([5, 10])
+solution = np.linalg.lstsq(A, B, rcond=None)[0]  # Least squares solution
+print("Solution to Linear Equations:", solution)
+
+matrix_3x3_svd = np.random.randint(1, 10, (3, 3))
+U, S, Vt = np.linalg.svd(matrix_3x3_svd)
+S_matrix = np.zeros((3, 3))
+np.fill_diagonal(S_matrix, S)
+reconstructed_matrix = U @ S_matrix @ Vt
+print("Original Matrix:\n", matrix_3x3_svd)
+print("Reconstructed Matrix Using SVD:\n", reconstructed_matrix)
